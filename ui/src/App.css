@@ -24,9 +24,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -37,7 +34,43 @@
   }
 }
 
+:root {
+  --global-font: sans-serif;
+  --global-border-radius: 16px;
+  --global-box-shadow-color: #91a3b1;
+  --navbar-height: 80px;
+  --font-size-massive: 4rem;
+  --font-size-huge: 3.5rem;
+  --font-size-big: 3rem;
+  --font-size-title: 2.5rem;
+  --font-size-heading: 2rem;
+  --font-size-subheading: 1.5rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.75rem;
+  --font-size-tiny: 0.5rem;
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+  --color-tertiary: #282c34;
+}
+
+.app{
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: var(--color-tertiary);
+  color: var(--color-secondary);
+}
+
 .movie-data-container{
   display: flex;
   flex-direction: column;
+  font-family: var(--global-font);
+}
+
+.movie-data-header{
+  font-size: var(--font-size-subheading);
+}
+
+.movie-data-entry{
+  font-size: var(--font-size-body);
+  padding: 3px 0px 3px 0px;
 }
