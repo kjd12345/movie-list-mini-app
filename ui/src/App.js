@@ -1,54 +1,54 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from './_context/AppProvider.jsx'
+import Navbar from "./_components/Navbar.jsx"
+import MovieEntry from "./_components/MovieEntry.jsx"
+import UserMovieList from "./_components/UserMovieList.jsx"
+import Overview from "./_components/Overview.jsx"
+import AddMovie from "./_components/AddMovie.jsx"
 import "./App.css";
 
+
+
 function App() {
-
-  // let moviesData = [
-  //   {title: 'Mean Girls'},
-  //   {title: 'Hackers'},
-  //   {title: 'The Grey'},
-  //   {title: 'Sunshine'},
-  //   {title: 'Ex Machina'},
-  // ];
-
-  const [movieData, setMovieData] = useState([]);
-  const searchInput = useRef("")
-
+  const { store } = useContext(GlobalContext);
+  const [currentView, setCurrentView] = useState('overview');
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch('http://localhost:8080/movies')
-      .then(res => res.json())
-      .then(data => setMovieData(data))
-      .catch(err => console.log(err))
+    store.getMovies();
   }, [])
 
-  const getMoviesByName = (name) => [
-    fetch(`http://localhost:8080/movies?name=${name}`)
-      .then(res => res.json())
-      .then(data => setMovieData(data))
-      .catch(err => console.log(err))
-  ]
-
   return (
+    <>
+    <Navbar />
     <div className="app">
-      <div className="navbar">
-        <span className="navbar-text">Come get some of those movies</span>
-        <div className="search-container">
-          <input className="search-input" placeholder="Search" onChange={(e) => {
-            searchInput.current = e.target.value
-            // getMoviesByName(searchInput.current)
-            }}/>
-          <img className="search-icon" src="./assets/search-icon-white.png" alt="search-icon" onClick={() => {
-            getMoviesByName(searchInput.current)}}/>
-        </div>
-      </div>
       <div className="movie-data-container">
-        <span className="movie-data-header">Movies</span>
-        {movieData.map(movie =>
-          <span key={movie.title} className="movie-data-entry">Title: {movie.title}</span>
-        )}
+        <div className="movie-data-header">
+          Movie List
+        </div>
+        <div className="header-button-container">
+            <button className="header-button selected" onClick={(e) => {
+              store.headerButtonHandler(e.target)
+              navigate("/")
+            }}>Overview</button>
+            <button className="header-button" onClick={(e) => {
+              store.headerButtonHandler(e.target)
+              navigate("/movies/add")
+            }}>Add A Movie</button>
+              <button className="header-button" onClick={(e) => {
+              store.headerButtonHandler(e.target)
+              navigate("/movies/custom")
+            }}>User Movies</button>
+        </div>
+        <Routes>
+          <Route path="/" element={<Overview/>} />
+          <Route path="/movies/add" element={<AddMovie/>}/>
+          <Route path="/movies/custom" element={<UserMovieList/>}/>
+        </Routes>
       </div>
     </div>
+    </>
   );
 }
 

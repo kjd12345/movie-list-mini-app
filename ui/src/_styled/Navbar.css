@@ -1,0 +1,30 @@
+.navbar{
+  position: fixed;
+  /* height: 100px; */
+  height: var(--navbar-height);
+  width: 100vw;
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+.navbar-text{
+  font-size: var(--font-size-big);
+  font-weight: 700;
+}
+
+.navbar-logo{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  left: 1%;
+}
+
+.navbar-logo:hover{
+  transform: scale(1.1);
+}

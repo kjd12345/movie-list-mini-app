@@ -26,7 +26,9 @@ app.get("/movies", (req, res) => {
             "Could not get movies by name"
         })
       )
-  } else {
+  } else if (req.query.custom === true) {
+
+  }else {
     console.log('Time for movies')
     knex
       .select("*")
@@ -41,5 +43,31 @@ app.get("/movies", (req, res) => {
   }
 
 })
+
+app.post("/movies", (req, res) => {
+  let movie = req.body;
+  console.log("Recieved movie data to add:", movie)
+
+  knex("movies")
+    .insert(movie)
+    .returning(["id"])
+    .then(() => res.status(201).json({
+      message:
+        "Movie Added"
+    }))
+    .catch(err => console.log(err))
+})
+
+app.delete("/movies/:id", (req, res) => {
+  console.log("Recieved request to delete movie ID:", req.params.id);
+
+  knex("movies")
+    .select("*")
+    .where({id: req.params.id, default: false})
+    .del()
+    .then(() => res.status(204).send())
+    .catch(err => console.log(err))
+})
+
 
 module.exports = app;
