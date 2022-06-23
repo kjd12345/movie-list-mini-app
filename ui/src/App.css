@@ -48,26 +48,65 @@
   --font-size-body: 1rem;
   --font-size-small: 0.75rem;
   --font-size-tiny: 0.5rem;
-  --color-primary: #000000;
-  --color-secondary: #ffffff;
-  --color-tertiary: #282c34;
+  --color-primary: #ffffff;
+  --color-secondary: #545578;
+  --color-tertiary: #11121d;
+  /* --color-tertiary: #282c34; */
 }
 
 .app{
-  min-height: 100vh;
+  height: 100vh - var(--navbar-height);
   min-width: 100vw;
+  background-color: var(--color-primary);
+}
+
+.navbar{
+  height: var(--navbar-height);
   background-color: var(--color-tertiary);
-  color: var(--color-secondary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-text{
+  font-size: var(--font-size-big);
+  font-weight: 600;
+}
+
+.search-container{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 2%;
+}
+
+.search-input{
+  height: 20px;
+  margin: 5px;
+}
+
+.search-icon{
+  height: 24px;
+  width: 24px;
+  margin: 5px;
+}
+
+.search-icon:hover{
+  content: url("./search-icon-orange.png");
 }
 
 .movie-data-container{
   display: flex;
   flex-direction: column;
   font-family: var(--global-font);
+  height: movi;
 }
 
 .movie-data-header{
+  background-color: var(--color-secondary);
   font-size: var(--font-size-subheading);
+  color: white;
 }
 
 .movie-data-entry{

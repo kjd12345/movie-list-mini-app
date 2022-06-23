@@ -12,16 +12,34 @@ app.get("/", (req,res) => {
 })
 
 app.get("/movies", (req, res) => {
-  knex
-    .select("*")
-    .from("movies")
-    .then(data => res.status(200).json(data))
-    .catch(err =>
-      res.status(404).json({
-        message:
-          "Something went wrong with movie data retrieval."
-      })
-    )
+  if (req.query.name !== undefined) {
+    let name = req.query.name;
+    console.log("Name query recieved:", name);
+    knex
+      .select("*")
+      .from("movies")
+      .where('title', 'ilike', `%${name}%`)
+      .then(data => res.status(200).json(data))
+      .catch(err =>
+        res.status(404).json({
+          message:
+            "Could not get movies by name"
+        })
+      )
+  } else {
+    console.log('Time for movies')
+    knex
+      .select("*")
+      .from("movies")
+      .then(data => res.status(200).json(data))
+      .catch(err =>
+        res.status(404).json({
+          message:
+            "Something went wrong with movie data retrieval."
+        })
+      )
+  }
+
 })
 
 module.exports = app;
