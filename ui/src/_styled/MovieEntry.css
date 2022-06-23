@@ -1,0 +1,73 @@
+.watched-button, .not-watched-button, .on-watchlist-button, .add-watchlist-button{
+  height: 30px;
+  width: 120px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: var(--font-size-small);
+  margin: 2px;
+}
+
+.not-watched-button, .add-watchlist-button{
+  background-color: gray;
+}
+
+.watched-button{
+  background-color: rgb(0, 182, 106);
+}
+
+.watched-button:hover{
+  animation: watch-hover 0.2s forwards;
+}
+
+.on-watchlist-button{
+  background-color: rgb(0, 109, 182);
+}
+
+.on-watchlist-button:hover{
+  animation: watchlist-hover 0.2s forwards;
+}
+
+.movie-entry-title{
+  position: relative;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  padding: 3px 0px 3px 0px;
+  margin: 10px;
+}
+
+.movie-entry{
+  display: flex;
+  background-color: #e2e2e2;
+  margin-top: 10px;
+  height: 80px;
+}
+
+hr.solid{
+  border-top: 2px solid rgb(158, 158, 158);
+}
+
+.entry-button-container{
+  position: absolute;
+  right: 0%;
+  margin: 10px;
+}
+
+@keyframes watch-hover {
+  from {
+    background-color: rgb(0, 182, 106);
+  }
+  to {
+    background-color: rgb(0, 117, 68);
+  }
+}
+
+@keyframes watchlist-hover {
+  from {
+    background-color: rgb(0, 109, 182);
+  }
+  to {
+    background-color: rgb(0, 78, 131);
+  }
+}

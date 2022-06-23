@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { GlobalContext } from '../_context/AppProvider.jsx'
 import MovieEntry from "./MovieEntry.jsx"
 
-const UserMovieList = (props) => {
+const WatchedMovies = (props) => {
   const { store } = useContext(GlobalContext);
 
   return (
@@ -14,4 +14,4 @@ const UserMovieList = (props) => {
   )
 }
 
-export default UserMovieList;
+export default WatchedMovies;

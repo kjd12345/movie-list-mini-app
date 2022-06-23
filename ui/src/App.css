@@ -149,16 +149,8 @@
 }
 
 .movie-data-title{
+  position: relative;
   font-size: var(--font-size-body);
   font-weight: 600;
   padding: 3px 0px 3px 0px;
-}
-
-.movie-entry{
-  background-color: #e2e2e2;
-  margin-top: 10px;
-}
-
-hr.solid{
-  border-top: 2px solid rgb(158, 158, 158);
 }

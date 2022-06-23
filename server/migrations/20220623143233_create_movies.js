@@ -6,7 +6,9 @@
   return knex.schema.createTable('movies', table => {
     table.increments();
     table.string('title', 250);
-    table.boolean('default').defaultTo(false);
+    table.boolean('watched').defaultTo(false);
+    table.boolean('toWatch').defaultTo(false);
+    table.boolean('userAdded').defaultTo(true);
   })
 };
 

@@ -19,6 +19,7 @@ app.get("/movies", (req, res) => {
       .select("*")
       .from("movies")
       .where('title', 'ilike', `%${name}%`)
+      .orderBy('id', 'asc')
       .then(data => res.status(200).json(data))
       .catch(err =>
         res.status(404).json({
@@ -33,6 +34,7 @@ app.get("/movies", (req, res) => {
     knex
       .select("*")
       .from("movies")
+      .orderBy('id', 'asc')
       .then(data => res.status(200).json(data))
       .catch(err =>
         res.status(404).json({
@@ -67,6 +69,32 @@ app.delete("/movies/:id", (req, res) => {
     .del()
     .then(() => res.status(204).send())
     .catch(err => console.log(err))
+})
+
+app.patch("/movies/:id/watched", (req,res) => {
+  console.log("Recieved request to changed watched status of movie ID:", req.params.id);
+
+  knex("movies")
+  .select("*")
+  .where({id: req.params.id})
+  .update({
+    watched: knex.raw('NOT ??',  ['watched'])
+  })
+  .then(() => res.status(204).send())
+  .catch(err => console.log(err))
+})
+
+app.patch("/movies/:id/toWatch", (req,res) => {
+  console.log("Recieved request to changed watchlist status of movie ID:", req.params.id);
+
+  knex("movies")
+  .select("*")
+  .where({id: req.params.id})
+  .update({
+    toWatch: knex.raw('NOT ??',  ['toWatch'])
+  })
+  .then(() => res.status(204).send())
+  .catch(err => console.log(err))
 })
 
 

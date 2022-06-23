@@ -4,17 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from './_context/AppProvider.jsx'
 import Navbar from "./_components/Navbar.jsx"
 import MovieEntry from "./_components/MovieEntry.jsx"
-import UserMovieList from "./_components/UserMovieList.jsx"
+import FilteredMovieList from "./_components/FilteredMovieList.jsx"
 import Overview from "./_components/Overview.jsx"
 import AddMovie from "./_components/AddMovie.jsx"
 import "./App.css";
 
 
-
 function App() {
   const { store } = useContext(GlobalContext);
-  const [currentView, setCurrentView] = useState('overview');
   const navigate = useNavigate();
+
   useEffect(() => {
     store.getMovies();
   }, [])
@@ -36,15 +35,23 @@ function App() {
               store.headerButtonHandler(e.target)
               navigate("/movies/add")
             }}>Add A Movie</button>
-              <button className="header-button" onClick={(e) => {
+            <button className="header-button" onClick={(e) => {
               store.headerButtonHandler(e.target)
-              navigate("/movies/custom")
+              navigate("/movies?userAdded=true")
             }}>User Movies</button>
+            <button className="header-button" onClick={(e) => {
+              store.headerButtonHandler(e.target)
+              navigate("/movies?watched=true")
+            }}>Watched</button>
+            <button className="header-button" onClick={(e) => {
+              store.headerButtonHandler(e.target)
+              navigate("/movies?toWatch=true")
+            }}>My Watchlist</button>
         </div>
         <Routes>
           <Route path="/" element={<Overview/>} />
           <Route path="/movies/add" element={<AddMovie/>}/>
-          <Route path="/movies/custom" element={<UserMovieList/>}/>
+          <Route path="/movies" element={<FilteredMovieList/>}/>
         </Routes>
       </div>
     </div>
