@@ -1,6 +1,6 @@
 .watched-button, .not-watched-button, .on-watchlist-button, .add-watchlist-button{
   height: 30px;
-  width: 120px;
+  width: 110px;
   border-radius: 5px;
   border: none;
   color: white;
@@ -31,17 +31,23 @@
 
 .movie-entry-title{
   position: relative;
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-subsubheading);
   font-weight: 600;
   padding: 3px 0px 3px 0px;
-  margin: 10px;
+  margin: 14px;
+  margin-left: 20px;
 }
 
 .movie-entry{
   display: flex;
+  flex-direction: column;
   background-color: #e2e2e2;
   margin-top: 10px;
-  height: 80px;
+  height: 55px;
+  border: 1px solid black;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 1200px;
 }
 
 hr.solid{
@@ -51,7 +57,38 @@ hr.solid{
 .entry-button-container{
   position: absolute;
   right: 0%;
-  margin: 10px;
+  margin: 11px;
+  margin-right: 20px;
+}
+
+.expanded{
+  animation: expand 0.1s forwards;
+}
+
+.contracted{
+  animation: contract 0.1s forwards;
+}
+
+.movie-entry-header{
+  display: flex;
+  background-color: #e2e2e2;
+  height: 55px;
+}
+
+.movie-entry-delete{
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: var(--font-size-small);
+  margin: 2px;
+  background-color: red;
+}
+
+.entry-detail-container{
+  padding-left: 20px;
 }
 
 @keyframes watch-hover {
@@ -69,5 +106,23 @@ hr.solid{
   }
   to {
     background-color: rgb(0, 78, 131);
+  }
+}
+
+@keyframes expand {
+  from {
+    height: 55px;
+  }
+  to {
+    height: 200px;
+  }
+}
+
+@keyframes contract {
+  from {
+    height: 200px;
+  }
+  to {
+    height: 55px;
   }
 }

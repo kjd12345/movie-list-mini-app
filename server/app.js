@@ -65,7 +65,7 @@ app.delete("/movies/:id", (req, res) => {
 
   knex("movies")
     .select("*")
-    .where({id: req.params.id, default: false})
+    .where({id: req.params.id, userAdded: true})
     .del()
     .then(() => res.status(204).send())
     .catch(err => console.log(err))
