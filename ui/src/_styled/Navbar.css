@@ -13,16 +13,25 @@
   z-index: 10;
 }
 
+.navbar-left{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  left: 0%;
+}
+
 .navbar-text{
-  font-size: var(--font-size-big);
+  font-size: var(--font-size-heading);
   font-weight: 700;
 }
 
 .navbar-logo{
-  position: absolute;
+  /* position: absolute; */
   height: 50px;
   width: 50px;
   left: 1%;
+  padding: 20px;
 }
 
 .navbar-logo:hover{

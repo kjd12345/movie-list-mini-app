@@ -16,7 +16,8 @@ const FilteredMovieList = (props) => {
     [param, value] = entry;
   }
 
-  value = !!value;
+  // parse boolean data
+  value = (value === 'true')
 
   return (
     <div className="overview-container">

@@ -20,41 +20,45 @@ function App() {
 
   return (
     <>
-    <Navbar />
-    <div className="app">
-      <div className="movie-data-container">
-        <div className="movie-data-header">
-          Movie List
+      <Navbar />
+      <div className="app">
+        <div className="movie-data-container">
+          <div className="movie-data-header">
+            Movies
+          </div>
+          <div className="header-button-container">
+              <button className="header-button selected" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/")
+              }}>Overview</button>
+              <button className="header-button" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/movies/add")
+              }}>Add A Movie</button>
+              <button className="header-button" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/movies?userAdded=true")
+              }}>User Movies</button>
+              <button className="header-button" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/movies?watched=true")
+              }}>Watched</button>
+              <button className="header-button" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/movies?watched=false")
+              }}>Not Watched</button>
+              <button className="header-button" onClick={(e) => {
+                store.headerButtonHandler(e.target)
+                navigate("/movies?toWatch=true")
+              }}>My Watchlist</button>
+          </div>
+          <Routes>
+            <Route path="/" element={<Overview/>} />
+            <Route path="/movies/add" element={<AddMovie/>}/>
+            <Route path="/movies" element={<FilteredMovieList/>}/>
+          </Routes>
         </div>
-        <div className="header-button-container">
-            <button className="header-button selected" onClick={(e) => {
-              store.headerButtonHandler(e.target)
-              navigate("/")
-            }}>Overview</button>
-            <button className="header-button" onClick={(e) => {
-              store.headerButtonHandler(e.target)
-              navigate("/movies/add")
-            }}>Add A Movie</button>
-            <button className="header-button" onClick={(e) => {
-              store.headerButtonHandler(e.target)
-              navigate("/movies?userAdded=true")
-            }}>User Movies</button>
-            <button className="header-button" onClick={(e) => {
-              store.headerButtonHandler(e.target)
-              navigate("/movies?watched=true")
-            }}>Watched</button>
-            <button className="header-button" onClick={(e) => {
-              store.headerButtonHandler(e.target)
-              navigate("/movies?toWatch=true")
-            }}>My Watchlist</button>
-        </div>
-        <Routes>
-          <Route path="/" element={<Overview/>} />
-          <Route path="/movies/add" element={<AddMovie/>}/>
-          <Route path="/movies" element={<FilteredMovieList/>}/>
-        </Routes>
       </div>
-    </div>
     </>
   );
 }

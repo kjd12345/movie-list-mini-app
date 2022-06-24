@@ -45,18 +45,21 @@ const MovieEntry = (props) => {
 
   return (
     <div id={movie.id} key={movie.title} className="movie-entry" onClick={(e)=>{
-      expandSelection(e.target.parentElement);
-      setDetailed(!detailed);
+      if (e.target.tagName !== "BUTTON") {
+        let element = e.target.closest(".movie-entry");
+        expandSelection(element);
+        setDetailed(!detailed);
+      }
     }}>
       <div className="movie-entry-header">
         <span className="movie-entry-title">{movie.title}</span>
         <div className="entry-button-container">
-        {movie.userAdded === true ?
-          <button id={movie.id} className="movie-entry-delete" onClick={(e) => {
-            deleteMovie(e.target.id);
-          }}
-          >Delete</button> : <></>
-        }
+          {movie.userAdded === true ?
+            <button id={movie.id} className="movie-entry-delete" onClick={(e) => {
+              deleteMovie(e.target.id);
+            }}
+            >Delete</button> : <></>
+          }
           {movie.watched === true ?
             <button className="watched-button" onClick={(e) => toggleWatched(e.target)}>Watched</button>
             :
@@ -71,7 +74,8 @@ const MovieEntry = (props) => {
       </div>
       {detailed === false ? <></> :
         <div className="entry-detail-container">
-          Nothing to see here
+          <hr className="entry-container-divider"/>
+          <span className="entry-detail-text">Nothing to see here</span>
         </div>
       }
     </div>
